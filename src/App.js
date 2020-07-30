@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Formulario from './components/Form/Form';
+import Productos from './components/Products/Products.js';
+import { Button } from 'react-bootstrap';
+import Actualizar from './components/Actualizar/Actualizar';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+      <nav className="navButtons">
+        <Link to={'/formulario'}><Button variant="primary">Nuevo Producto</Button></Link>
+        <h1>INVENTARIO</h1>
+        <Link to={'/productos'} ><Button variant="info">Ver Productos</Button></Link>
+      </nav>
+      <Switch>
+        <Route exact path='/formulario' component={ Formulario } />
+        <Route exact path='/productos' component={ Productos } />
+        <Route exact path='/editar' component={ Actualizar } />
+      </Switch>
+    </Router>
     </div>
   );
 }
